@@ -20,7 +20,7 @@ public class ApplicantService {
         return applicantRepository.findById(id);
     }
 
-    public Applicant saveApplicant(Applicant applicant){
+    public Applicant addApplicant(Applicant applicant){
         return applicantRepository.save(applicant);
     }
 }
