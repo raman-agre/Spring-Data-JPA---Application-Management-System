@@ -16,11 +16,23 @@ public class ApplicantService {
         this.applicantRepository = applicantRepository;
     }
 
+    //get applicant
     public Optional<Applicant> getApplicant(Long id){
         return applicantRepository.findById(id);
     }
 
+    //get all applicants
+    public List<Applicant> getAllApplicants(){
+        return applicantRepository.findAll();
+    }
+
+    //add applicant
     public Applicant addApplicant(Applicant applicant){
         return applicantRepository.save(applicant);
+    }
+
+    //delete applicant
+    public void deleteApplicant(Long id){
+        applicantRepository.deleteById(id);
     }
 }
