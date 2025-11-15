@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/applicant")
 public class ApplicantController {
 
@@ -40,6 +40,26 @@ public class ApplicantController {
     public ResponseEntity<String> deleteApplicant(@PathVariable Long id){
         applicantService.deleteApplicant(id);
         return ResponseEntity.ok().body("Applicant deleted");
+    }
+
+    @GetMapping("/page")
+    public Iterable<Applicant> getApplicantWithPagination(@RequestParam int page, @RequestParam int size){
+        return applicantService.getApplicantWithPagination(page, size);
+    }
+
+    @GetMapping("/getByStatus")
+    public List<Applicant> findByStatus(@RequestParam String status){
+        return applicantService.findByStatus(status);
+    }
+
+    @GetMapping("/getByName")
+    public ResponseEntity<List<Applicant>> findApplicantByPartialName(@RequestParam String name){
+        return ResponseEntity.ok(applicantService.findByPartialName(name));
+    }
+
+    @GetMapping("/phone")
+    public ResponseEntity<Applicant> getByPhone(@RequestParam String phone){
+        return ResponseEntity.ok(applicantService.findByPhone(phone));
     }
 
 }
